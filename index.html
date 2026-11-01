@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101410">
+  <meta name="description" content="KONTENIN — toolkit sederhana untuk ide, caption, dan jadwal konten kreator.">
+  <title>KONTENIN — Creator Toolkit</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="KONTENIN beranda">
+        <span class="brand-mark">K</span>
+        <span>KONTEN<span class="brand-accent">IN</span><small>CREATOR TOOLKIT</small></span>
+      </a>
+      <nav class="nav-list" aria-label="Navigasi utama">
+        <button class="nav-item active" data-view="dashboard"><span>⌂</span> Dashboard</button>
+        <button class="nav-item" data-view="ideas"><span>✦</span> Ide Konten</button>
+        <button class="nav-item" data-view="captions"><span>✎</span> Caption Maker</button>
+        <button class="nav-item" data-view="planner"><span>▦</span> Kalender Konten</button>
+        <button class="nav-item" data-view="saved"><span>☆</span> Ide Tersimpan</button>
+      </nav>
+      <div class="sidebar-note">
+        <span class="online-dot"></span>
+        <div><strong>Mode kreator</strong><small>Mulai dari ide kecil.</small></div>
+      </div>
+      <div class="sidebar-footer">KONTENIN v1.0<br><span>Dibuat untuk kreator pemula.</span></div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="icon-button menu-toggle" id="menuToggle" aria-label="Buka navigasi">☰</button>
+        <div class="breadcrumb">WORKSPACE <span>/</span> <strong id="pageName">Dashboard</strong></div>
+        <div class="topbar-right"><span class="status-pill"><span class="online-dot"></span> Siap berkarya</span><div class="avatar">K</div></div>
+      </header>
+
+      <section class="view active-view" id="view-dashboard">
+        <div class="hero">
+          <div class="hero-copy">
+            <div class="eyebrow"><span class="spark">✦</span> YOUR CREATOR SPACE</div>
+            <h1>Punya ide.<br><span class="text-green">Bikin jadi konten.</span></h1>
+            <p>Tempat sederhana buat mengubah ide random jadi rencana konten yang siap kamu kerjakan.</p>
+            <button class="button button-primary" data-go="ideas">Cari ide konten <span>↗</span></button>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+            <div class="art-card"><span class="art-star">✦</span><span class="art-lines"></span><span class="art-tag">IDE → AKSI</span></div>
+            <div class="art-bubble bubble-one">#Create</div><div class="art-bubble bubble-two">01 / 04</div>
+          </div>
+        </div>
+
+        <div class="section-heading"><div><span class="eyebrow">OVERVIEW</span><h2>Workspace kamu</h2></div><span class="muted small-text">Data tersimpan di browser ini</span></div>
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-top"><span>Total ide tersimpan</span><span class="stat-icon">✦</span></div><strong id="statSaved">0</strong><small>Ide yang ingin kamu coba</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Rencana konten</span><span class="stat-icon">▦</span></div><strong id="statPlans">0</strong><small>Jadwal yang kamu buat</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Sudah selesai</span><span class="stat-icon">✓</span></div><strong id="statDone">0</strong><small>Rencana berstatus selesai</small></article>
+        </div>
+
+        <div class="content-grid">
+          <article class="panel">
+            <div class="panel-heading"><div><span class="eyebrow">MULAI DI SINI</span><h3>Toolkit kreator</h3></div><span class="panel-symbol">↗</span></div>
+            <button class="tool-row" data-go="ideas"><span class="tool-icon">✦</span><span><strong>Temukan ide konten</strong><small>Pilih topik dan platform yang kamu pakai.</small></span><span class="row-arrow">→</span></button>
+            <button class="tool-row" data-go="captions"><span class="tool-icon">✎</span><span><strong>Racik caption</strong><small>Mulai dari topik, pilih gaya bahasanya.</small></span><span class="row-arrow">→</span></button>
+            <button class="tool-row" data-go="planner"><span class="tool-icon">▦</span><span><strong>Susun jadwal</strong><small>Catat ide dan tanggal rencana posting.</small></span><span class="row-arrow">→</span></button>
+          </article>
+          <article class="panel quick-panel">
+            <div class="panel-heading"><div><span class="eyebrow">QUICK NOTE</span><h3>Catatan kreator</h3></div><span class="panel-symbol">✎</span></div>
+            <p class="muted">Simpan ide spontan sebelum lupa.</p>
+            <textarea id="quickNote" rows="5" placeholder="Contoh: video 3 aplikasi gratis buat pelajar..."></textarea>
+            <div class="panel-bottom"><span id="noteStatus" class="muted small-text">Tersimpan otomatis di perangkat.</span><button class="button button-secondary button-small" id="clearNote">Hapus catatan</button></div>
+          </article>
+        </div>
+        <div class="footer-note">KONTENIN bukan layanan resmi TikTok, Instagram, atau YouTube. Buat, cek, dan posting kontenmu dengan bijak.</div>
+      </section>
+
+      <section class="view" id="view-ideas">
+        <div class="page-intro"><span class="eyebrow">IDE GENERATOR</span><h1>Jangan mentok <span class="text-green">di ide.</span></h1><p>Pilih platform dan kategori. KONTENIN akan menyusun inspirasi yang bisa kamu kembangkan sendiri.</p></div>
+        <div class="panel generator-panel">
+          <div class="form-grid">
+            <label>Platform
+              <select id="ideaPlatform"><option>TikTok</option><option>Instagram Reels</option><option>YouTube Shorts</option><option>Blog</option></select>
+            </label>
+            <label>Kategori
+              <select id="ideaCategory"><option value="daily">Keseharian</option><option value="education">Edukasi</option><option value="tech">Teknologi</option><option value="design">Desain & kreativitas</option><option value="gaming">Gaming</option><option value="business">Bisnis pemula</option><option value="story">Storytelling</option></select>
+            </label>
+            <label class="full-field">Topik tambahan (opsional)
+              <input id="ideaTopic" type="text" placeholder="Contoh: kehidupan anak SMK, aplikasi gratis, desain logo">
+            </label>
+          </div>
+          <button class="button button-primary" id="generateIdeas">✦ Buat ide konten</button>
+        </div>
+        <div class="section-heading result-heading"><div><span class="eyebrow">HASIL GENERATOR</span><h2>Ide buat kamu</h2></div><span class="muted small-text" id="ideaCount">4 inspirasi</span></div>
+        <div class="idea-grid" id="ideaResults"></div>
+      </section>
+
+      <section class="view" id="view-captions">
+        <div class="page-intro"><span class="eyebrow">CAPTION STUDIO</span><h1>Kata-kata yang <span class="text-green">nyambung.</span></h1><p>Masukkan topik dan pilih gaya caption. Hasilnya bisa kamu edit sebelum dipakai.</p></div>
+        <div class="content-grid caption-layout">
+          <article class="panel">
+            <div class="panel-heading"><div><span class="eyebrow">INPUT</span><h3>Atur caption</h3></div></div>
+            <form id="captionForm">
+              <label>Topik konten<input id="captionTopic" required maxlength="140" placeholder="Contoh: belajar desain dari nol"></label>
+              <label>Platform<select id="captionPlatform"><option>TikTok</option><option>Instagram</option><option>YouTube</option><option>LinkedIn</option></select></label>
+              <label>Gaya bahasa<select id="captionStyle"><option value="casual">Santai & relatable</option><option value="educational">Informatif</option><option value="motivational">Motivasi</option><option value="story">Storytelling</option><option value="promo">Promosi sopan</option></select></label>
+              <button class="button button-primary full-width" type="submit">Buat caption ↗</button>
+            </form>
+          </article>
+          <article class="panel caption-output-panel">
+            <div class="panel-heading"><div><span class="eyebrow">OUTPUT</span><h3>Caption kamu</h3></div><span class="output-dot"></span></div>
+            <textarea id="captionOutput" rows="10" placeholder="Caption yang dibuat akan muncul di sini. Kamu bisa mengeditnya langsung..." aria-label="Hasil caption"></textarea>
+            <div class="output-actions"><span class="muted small-text" id="captionLength">0 karakter</span><div><button class="button button-secondary button-small" id="copyCaption">Salin caption</button><button class="button button-primary button-small" id="saveCaption">Simpan ide</button></div></div>
+            <p class="muted tiny-text">Hasil dibuat dari template lokal, bukan AI online. Periksa lagi agar sesuai dengan gaya dan fakta kontenmu.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="view" id="view-planner">
+        <div class="page-intro"><span class="eyebrow">CONTENT PLANNER</span><h1>Ide bagus butuh <span class="text-green">rencana.</span></h1><p>Tambahkan rencana posting, tentukan tanggal, lalu tandai progresnya.</p></div>
+        <div class="panel">
+          <div class="panel-heading"><div><span class="eyebrow">CONTENT SCHEDULE</span><h3>Tambah rencana</h3></div></div>
+          <form id="planForm" class="form-grid planner-form">
+            <label>Judul konten<input id="planTitle" required maxlength="120" placeholder="Contoh: 3 tips desain poster"></label>
+            <label>Platform<select id="planPlatform"><option>TikTok</option><option>Instagram Reels</option><option>YouTube Shorts</option><option>Blog</option></select></label>
+            <label>Tanggal rencana<input id="planDate" type="date" required></label>
+            <label>Status<select id="planStatus"><option value="draft">Ide</option><option value="progress">Sedang dibuat</option><option value="done">Selesai</option></select></label>
+            <div class="full-field"><button class="button button-primary" type="submit">＋ Tambah ke kalender</button></div>
+          </form>
+        </div>
+        <div class="section-heading"><div><span class="eyebrow">YOUR QUEUE</span><h2>Daftar rencana</h2></div><button class="button button-secondary button-small" id="exportPlans">Ekspor CSV</button></div>
+        <div class="panel planner-list" id="plannerList"></div>
+      </section>
+
+      <section class="view" id="view-saved">
+        <div class="page-intro"><span class="eyebrow">IDE LIBRARY</span><h1>Tempat ide <span class="text-green">berkumpul.</span></h1><p>Semua ide yang kamu simpan dari generator atau caption maker ada di sini.</p></div>
+        <div class="saved-toolbar"><label class="search-box"><span>⌕</span><input id="savedSearch" placeholder="Cari ide tersimpan..." aria-label="Cari ide tersimpan"></label><button class="button button-secondary button-small" id="exportSaved">Ekspor CSV</button></div>
+        <div class="idea-grid" id="savedResults"></div>
+        <div class="empty-state hidden" id="savedEmpty"><span>☆</span><h3>Belum ada ide tersimpan</h3><p>Simpan ide yang kamu suka dari halaman Ide Konten atau Caption Maker.</p><button class="button button-primary" data-go="ideas">Cari ide</button></div>
+      </section>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
